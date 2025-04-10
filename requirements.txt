@@ -1,2 +1,5 @@
 python-dotenv
 discord.py
+newsapi-python
+requests
+beautifulsoup4
