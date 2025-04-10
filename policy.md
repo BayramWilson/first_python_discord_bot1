@@ -41,4 +41,4 @@ We may update this policy from time to time. The most current version will alway
 ## 8. Contact
 
 If you have questions or concerns about this Privacy Policy, please contact:  
-📧 your@email.com
+📧 wilsonaiautomation@gmail.com
