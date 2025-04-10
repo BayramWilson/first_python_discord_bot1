@@ -1,12 +1,9 @@
-# This example requires the 'message_content' intentf
-from dotenv import load_dotenv
 import os
 import discord
-load_dotenv()
 import requests
 from bs4 import BeautifulSoup as bs
 
-
+# News scrapen
 URL = 'https://tarnkappe.info/newsticker'
 req = requests.get(URL)
 soup = bs(req.text, 'html.parser')
@@ -19,9 +16,15 @@ if section:
         title = first_link.text.strip()
         link = first_link['href']
 
+
+# Token aus Umgebungsvariable
 token = os.getenv("TOKEN")
 
+if not token:
+    print("TOKEN nicht gefunden")
+    exit()
 
+# Bot konfigurieren
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -29,7 +32,7 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    print(f'Bot ist online als {client.user}')
 
 @client.event
 async def on_message(message):
@@ -38,12 +41,15 @@ async def on_message(message):
 
     if message.content.startswith('!ping'):
         await message.channel.send('Hello!')
-    
-    if message.content.startswith('!Hallo'):
-        await message.channel.send('Hallo Leute ich poste hier nur die aktuellen Tech News mithilfe,' \
-        'einiger API´s!')
-    if message.content.startswith('!help'):
-        await message.channel.send('schreibe !News für ein Beitrag')
-    if message.content.startswith('!News'):
+
+    elif message.content.startswith('!Hallo'):
+        await message.channel.send('Hallo Leute! Ich poste hier aktuelle Tech-News mithilfe einiger APIs!')
+
+    elif message.content.startswith('!help'):
+        await message.channel.send('Verfügbare Befehle: `!News`, `!Hallo`, `!ping`')
+
+    elif message.content.startswith('!News'):
         await message.channel.send(f"📰 {title}\n🔗 {link}")
+
+# Bot starten
 client.run(token)
