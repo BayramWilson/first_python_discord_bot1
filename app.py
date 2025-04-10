@@ -42,6 +42,8 @@ async def on_message(message):
     if message.content.startswith('!Hallo'):
         await message.channel.send('Hallo Leute ich poste hier nur die aktuellen Tech News mithilfe,' \
         'einiger API´s!')
+    if message.content.startswith('!help'):
+        await message.channel.send('schreibe !News für ein Beitrag')
     if message.content.startswith('!News'):
         await message.channel.send(f"📰 {title}\n🔗 {link}")
 client.run(token)
