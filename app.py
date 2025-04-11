@@ -14,7 +14,8 @@ if not token:
 utc = datetime.timezone.utc
 
 # If no tzinfo is given then UTC is assumed.
-time = datetime.time(hour=8, minute=30, tzinfo=utc)
+# german time 8:30
+time = datetime.time(hour=6, minute=30, tzinfo=utc)
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -34,7 +35,7 @@ async def send_daily_motivation():
 async def on_ready():
     print(f' Bot ist online als {client.user}')
     client.loop.create_task(start_news_loop(client))
-
+    send_daily_motivation.start()
 @client.event
 async def on_message(message):
     if message.author == client.user:
