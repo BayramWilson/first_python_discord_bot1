@@ -3,3 +3,4 @@ discord.py
 newsapi-python
 requests
 beautifulsoup4
+openai
